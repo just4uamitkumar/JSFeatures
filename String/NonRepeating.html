@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Not repeating Character</title>
+    <script>
+      function noRepeating(str) {
+        let newStr = str.split("");
+        for (let i = 0; i < newStr.length; i++) {
+          let char = newStr[i];
+          if (newStr.indexOf(char) == i && newStr.indexOf(char, i + 1) == -1) {
+            return char;
+          }
+        }
+      }
+
+      
+      console.log(noRepeating("abacabad"));
+
+      const NonRepeatingA = (str) => {
+        let newStr = str.split("");
+        let nontRepEl = [];
+        for(let i = 0; i < newStr.length; i++) {
+          if(newStr.indexOf(newStr[i]) === newStr.lastIndexOf(newStr[i])) {
+            nontRepEl.push(newStr[i]);
+          }
+        }
+        return nontRepEl;
+
+      }
+
+      console.log(NonRepeatingA("abacabad"));
+
+   
+    </script>
+  </head>
+  <body>
+    <h1>Stack with Class</h1>
+  </body>
+</html>

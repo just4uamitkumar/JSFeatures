@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Get Largest Number</title>
+  </head>
+  <body>
+    <h1>Get Largest Number</h1>
+
+    <script>
+      const getLargest = (arr) => {
+        let max = 0;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > max) {
+            max = arr[i];
+          }
+        }
+
+        return max;
+      };
+      const myArr = [17, 5, 19, 20, 21, 3, 7];
+      console.log(getLargest(myArr));
+
+      const getSecondLargest = (arr) => {
+        let largest = -Infinity;
+        let secondLargest = -Infinity;
+
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+          } else if (arr[i] > secondLargest && arr[i] !== largest) {
+            secondLargest = arr[i];
+          }
+        }
+
+        return secondLargest === -Infinity ? null : secondLargest;
+      };
+      
+      console.log(getSecondLargest(myArr));
+    </script>
+  </body>
+</html>

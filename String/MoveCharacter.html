@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Move Character</title>
+    <script>
+      //############
+      const shiftCharsSafe = (str, shift) => {
+        return str
+          .split("")
+          .map((char) => {
+            const base = "a".charCodeAt(0);
+            const code = char.charCodeAt(0) - base;
+            const newCode = (code + shift) % 26;
+            return String.fromCharCode(base + newCode);
+          })
+          .join("");
+      };
+
+      console.log(shiftCharsSafe("Amit", 3));
+      console.log(shiftCharsSafe("Amiz", 4));
+
+      //############
+      const changeChar = (str, k) => {
+        const myStr = str.split("");
+        let arr = [];
+
+        for (let i = 0; i < myStr.length; i++) {
+          const elDigit = str.charCodeAt(i) + k;
+          arr.push(String.fromCharCode(elDigit));
+        }
+
+        return arr.join("");
+      };
+
+      console.log(changeChar("amit", 3));
+    </script>
+  </head>
+  <body>
+    <h1>Move Character</h1>
+  </body>
+</html>

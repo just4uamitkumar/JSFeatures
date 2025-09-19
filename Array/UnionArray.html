@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Union and Intersection of Arrays</title>
+  </head>
+  <body>
+    <h1>Union and Intersection of Arrays</h1>
+
+    <script>
+      
+      const myArr1 = [4, 6, 8, 9, 12];
+      const myArr2 = [3, 6, 8, 11, 15];
+
+      //Union of two arrays
+      const unionArray = (arr1, arr2) => {
+        let myArr = [];
+
+        for (let i = 0; i < arr1.length; i++) {
+          if (!arr2.includes(arr1[i])) {
+            myArr.push(arr1[i]);
+          }
+        }
+        console.log(myArr)
+
+        myArr = [...myArr, ...arr2];
+        return myArr;
+      };
+
+      console.log('unionArray of arrays', unionArray(myArr1, myArr2));
+
+      //Intersection of two arrays
+      const interArray = (arr1, arr2) => {
+        const myArr = [];
+        for (let i = 0; i < arr1.length; i++) {
+          if (arr2.includes(arr1[i])) {
+            myArr.push(arr1[i]);
+          }
+        }
+        return myArr;
+      };
+
+      console.log('interArray of arrays', interArray(myArr1, myArr2));
+    </script>
+  </body>
+</html>

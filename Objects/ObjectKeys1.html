@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Object Keys 1</title>
+  </head>
+  <body>
+    <h1>Object Keys 1</h1>
+    <p>Open the console to see the output.</p>
+
+    <script>
+      const myArr = [
+        {
+          category: "Books",
+          item: { name: "Comics", price: 15, inStock: true },
+        },
+        {
+          category: "Electronics",
+          item: { name: "Mobile", price: 999, inStock: false },
+        },
+        {
+          category: "Fruits",
+          item: { name: "Apple", price: 2, inStock: true },
+        },
+        {
+          category: "Beverages",
+          item: { name: "Tea", price: 4, inStock: true },
+        },
+        {
+          category: "Vegetables",
+          item: { name: "Carrot", price: 1, inStock: true },
+        },
+        {
+          category: "Electronics",
+          item: { name: "Laptop", price: 1200, inStock: true },
+        },
+      ];
+
+      let categoryMap = {};
+      myArr.forEach((obj) => {
+        const category = obj.category;
+        const itemName = obj.item.name;
+
+        if (categoryMap[category]) {
+          categoryMap[category].push(itemName);
+        } else {
+          categoryMap[category] = [itemName];
+        }
+      });
+
+      console.log(categoryMap);
+    </script>
+  </body>
+</html>
+
+

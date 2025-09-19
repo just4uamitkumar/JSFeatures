@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Reduce</title>
+    <script>
+      const people = [
+        { name: "Alice", age: 25, city: "NY" },
+        { name: "Bob", age: 30, city: "SF" },
+        { name: "Charlie", age: 25, city: "SF" },
+        { name: "David", age: 30, city: "NY" },
+        { name: "Eve", age: 35, city: "NY" },
+      ];
+
+      //Group by age, city
+      const grouped = people.reduce((acc, person) => {
+        const { age, city } = person;
+
+        // Ensure age group exists
+        if (!acc[age]) {
+          acc[age] = {};
+        }
+
+        // Ensure city group exists within age
+        if (!acc[age][city]) {
+          acc[age][city] = [];
+        }
+
+        // Push the person into the correct group
+        acc[age][city].push(person);
+
+        return acc;
+      }, {});
+
+      console.log(grouped);
+    </script>
+  </head>
+  <body>
+    <h1>Reduce</h1>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Merge Objects</title>
+  </head>
+  <body>
+    <h1>Merge Objects</h1>
+    <p>Open the console to see the output.</p>
+
+    <script>
+      const firstObj = { name: "David", age: 45, Salary: 50000 };
+      const secondObj = {
+        age: 39,
+        state: "Florida",
+        Professtion: "Software Engineer",
+      };
+
+      const mergeObj = (obj1, obj2) => {
+        for (const key in obj2) {
+          if (obj2.hasOwnProperty(key)) {
+            obj1[key] = obj2[key];
+          }
+        }
+        return obj1;
+      };
+
+      console.log(mergeObj(firstObj, secondObj));
+    </script>
+  </body>
+</html>

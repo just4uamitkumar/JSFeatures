@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Class A</title>
+    <script>
+      class User{
+        constructor(name, email, password) {
+          this.name = name;
+          this.email = email;
+          this.password = password;
+        }
+
+        encrypPassword() {
+          return `${this.password.split('').reverse().join('')}`;
+        }
+
+        updateName() {
+          return `${this.name.toUpperCase()}`;
+        }
+      }
+
+      const amit = new User("Amit", "amit@gmail.com", "amit123");
+      console.log(amit.encrypPassword());
+      console.log(amit.updateName());
+    </script>
+  </head>
+  <body>
+    <h1>Stack with Class</h1>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Sum All</title>
+    <script>
+      const myArr = [10, 20, 30]; //output [50,40,30]
+
+      const myFunc = (arr) => {
+        let newArr = [];
+        let sumAll = arr.reduce((acc, cum) => acc + cum, 0);
+
+        for (let i = 0; i < arr.length; i++) {
+          let element = sumAll - arr[i];
+          newArr.push(element);
+        }
+
+        return newArr;
+      };
+
+      console.log(myFunc(myArr));
+    </script>
+  </head>
+  <body>
+    <h1>Transform Array Elements</h1>
+  </body>
+</html>

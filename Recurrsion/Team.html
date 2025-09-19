@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Handle Team</title>
+  </head>
+  <body>
+    <h1>Handle Team</h1>
+
+    <script>
+
+       const teamStructure = {
+          name: "Kunal",
+          teams: [
+            {
+              name: "Harish",
+              teams: [
+                {
+                  name: "Alisha",
+                  teams: [
+                    {
+                      name: "Yash",
+                      teams: [],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "Anurag",
+              teams: [],
+            },
+          ],
+        };
+
+      //Get sum for all numbers in array
+        const getTeamDetail = (t) => {
+          if (t.teams.length === 0) {
+            return;
+          }
+          t.teams.forEach((team) => {
+            return getTeamDetail(team);
+          });
+        };
+    
+      
+       console.log('Get Team', getTeamDetail(teamStructure));
+    </script>
+  </body>
+</html>

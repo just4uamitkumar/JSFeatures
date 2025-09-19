@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debounce Input Example</title>
+  </head>
+  <body>
+    <input type="text" id="searchBox" placeholder="Start typing..." />
+
+    <script>
+      const inputBox = document.getElementById("searchBox");
+
+      function debounce(fn, delay) {
+        let timeOut;
+        return function (...args) {
+          clearTimeout(timeOut);
+          timeOut = setTimeout(() => fn.apply(this, args), delay);
+        };
+      }
+
+      const handleInput = debounce(function (event) {
+        console.log("User typed:", event.target.value);
+      }, 500);
+
+      inputBox.addEventListener("input", handleInput);
+    </script>
+  </body>
+</html>

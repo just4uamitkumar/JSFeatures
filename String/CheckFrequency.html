@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Check Frequency of Character</title>
+
+    <script>
+
+      const myStr = 'abacabaddd';
+
+      //Check frequency for each character in a string
+      const checkFrequency = (str) => {
+        let newStr = str.split("");
+        let frequency = {};
+        for (let i = 0; i < newStr.length; i++) {
+          if(frequency[newStr[i]]) {
+            frequency[newStr[i]] += 1;
+          } else {
+            frequency[newStr[i]] = 1;
+          }
+        }
+        return frequency;
+      };
+
+      console.log(checkFrequency(myStr));
+
+      //Get the most repeating element
+      const mostFrequentValue = (str) => {
+        let newStr = str.split("");
+        let frequency = {};
+        for (let i = 0; i < newStr.length; i++) {
+          if(frequency[newStr[i]]) {
+            frequency[newStr[i]] += 1;
+          } else {
+            frequency[newStr[i]] = 1;
+          }
+        }
+       
+        const keyArr = Object.keys(frequency);
+        const valueArr = Object.values(frequency);
+        const newValueArr = valueArr.map(e => e)
+        const highestVal = newValueArr.sort((a, b) => a - b)[newValueArr.length - 1];
+        const highIndex = valueArr.indexOf(highestVal);
+        const highElem = keyArr[highIndex]
+
+        return `${highElem} is repeating ${highestVal} times`
+
+      };
+
+      console.log(mostFrequentValue(myStr));
+      
+    </script>
+  </head>
+  <body>
+    <h1>Stack with Class</h1>
+  </body>
+</html>

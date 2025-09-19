@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Compare Array</title>
+  </head>
+  <body>
+    <h1>Compare Array</h1>
+
+    <script>
+      //reduce duplicate by one
+      const myArr1 = [1, 9, 3, 11, 7, 6];
+      const myArr2 = [1, 9, 3, 11, 6, 7];
+
+      const compareArr = (arr1, arr2) => {
+        if (arr1.length !== arr2.length) {
+          console.log("Arrays are not equal");
+          return false;
+        }
+
+        if (arr1.sort().join(",") !== arr2.sort().join(",")) {
+          console.log("Arrays are not equal");
+          return false;
+        }
+
+        console.log("Arrays are equal");
+        return true;
+      };
+
+      compareArr(myArr1, myArr2);
+    </script>
+  </body>
+</html>

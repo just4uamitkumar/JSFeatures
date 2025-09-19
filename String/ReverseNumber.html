@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Reverse Number</title>
+  </head>
+  <body>
+    <h1>Reverse Number</h1>
+
+    <script>
+      
+      const myNum = 1234;
+
+      //Reverse Number
+      const checkNumA = (num) => {
+        let str = num.toString()
+        let newStr = str.split('').reverse().join('');
+        return Number(newStr)
+      }
+
+  
+      console.log('Check String Method A', checkNumA(myNum));
+    </script>
+  </body>
+</html>

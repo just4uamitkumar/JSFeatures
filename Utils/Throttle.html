@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Throttle Example</title>
+</head>
+<body>
+  <input type="text" id="throttleInput" placeholder="Type fast..." />
+
+  <script>
+
+    const inputBox = document.getElementById('throttleInput');
+
+    function throttle(fn, limit) {
+      let lastCall = 0;
+      return function (...args) {
+        const now = Date.now();
+        if (now - lastCall >= limit) {
+          lastCall = now;
+          fn.apply(this, args);
+        }
+      };
+    }
+
+const throttledLog = throttle(function (event) {
+  console.log('Input throttled:', event.target.value);
+}, 1000); // 1000ms = 1 second
+
+  inputBox.addEventListener('input', throttledLog);
+  
+  </script>
+</body>
+</html>

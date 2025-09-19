@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Sum All</title>
+  </head>
+  <body>
+    <h1>Sum All</h1>
+
+    <script>
+
+      const myArr = [4, 6, 19, 10, 15, 91]
+
+      //Get sum for all numbers in array
+        const sumAll = (arr) => {
+           if (arr.length === 0) {
+              return 0; // Base case
+            }
+            return arr[0] + sumAll(arr.slice(1)); // Recursive call 
+        }
+    
+      
+       console.log('Sum All', sumAll(myArr));
+    </script>
+  </body>
+</html>

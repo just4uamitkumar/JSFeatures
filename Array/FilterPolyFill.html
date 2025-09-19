@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Array Filter Polyfill</title>
+  </head>
+  <body>
+    <h1>Filter Polyfill</h1>
+
+    <script>
+      Array.prototype.myFilter = function (cb) {
+        let temp = [];
+        for (let i = 0; i < this.length; i++) {
+            if(cb(this[i], i, this)) {
+                temp.push(this[i]);
+            }
+        }
+
+        return temp;
+      };
+
+      const arr = [1, 2, 3, 4, 5];
+      const result = arr.myFilter((item, index, array) => {
+        return item > 2;
+      });
+
+    console.log(result); // [3, 4, 5]
+    </script>
+  </body>
+</html>
