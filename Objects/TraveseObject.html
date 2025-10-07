@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Traverse a Object</title>
+    <script>
+      const myObj = {
+        id: 1,
+        profile: {
+          info: {
+            name: "Amit",
+            skills: { js: "advanced", react: "intermediate" },
+          },
+        },
+      };
+
+      const traverSeObject = (obj, keyToFind) => {
+        let result = null;
+
+        const search = (obj) => {
+          for (let key in obj) {
+            if (key === keyToFind) {
+              result = obj[key];
+              return;
+            }
+            if (typeof obj[key] === "object" && obj[key] !== null) {
+              search(obj[key]);
+            }
+          }
+        };
+
+        search(obj);
+        return result;
+      };
+
+      const result = traverSeObject(myObj, "react");
+      console.log(result);
+    </script>
+  </head>
+  <body>
+    <h1>Traverse a Object</h1>
+  </body>
+</html>

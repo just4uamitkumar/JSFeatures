@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Count keys in nested Object</title>
+    <script>
+      const obj = {
+        a: 1,
+        b: { c: 2, d: { e: 3, f: 4 } },
+      };
+
+      // Count keys in nested object
+      const countKeys = (obj) => {
+        let count = 0;
+        for (const key in obj) {
+          count++;
+          if (typeof obj[key] === "object" && obj[key] !== null) {
+            count += countKeys(obj[key]);
+          }
+        }
+        return count;
+      };
+
+      const totalKeys = countKeys(obj);
+      console.log(totalKeys); // Output: 6
+    </script>
+  </head>
+  <body>
+    <h1>Count Keys in Nested Object</h1>
+  </body>
+</html>
+

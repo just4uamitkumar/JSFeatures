@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Get Highest valuet</title>
+    <script>
+      const myObj = {
+        x: 5,
+        y: { z: 12, w: { p: 8, q: 20 } },
+      };
+
+      const getMaxValue = (obj) => {
+        let arr = [];
+        for (key in obj) {
+          if (typeof obj[key] === "object" && obj[key] !== null) {
+            arr.push(getMaxValue(obj[key]));
+          } else {
+            arr.push(obj[key]);
+          }
+        }
+        const newArr = arr.flat().sort((a, b) => a - b);
+        return newArr[newArr.length - 1];
+      };
+
+      const result = getMaxValue(myObj);
+      console.log(result); // 20
+
+      const getMaxValueB = (obj) => {
+        let max = -Infinity;
+        for (let key in obj) {
+          const value = obj[key];
+          if (typeof value === "object" && value !== null) {
+            max = Math.max(max, getMaxValue(value));
+          } else {
+            max = Math.max(max, value);
+          }
+        }
+        return max;
+      };
+
+      const resultB = getMaxValueB(myObj);
+
+      console.log(resultB); // 20
+    </script>
+  </head>
+  <body>
+    <h1>Get Highest Value in Nested Object</h1>
+  </body>
+</html>
