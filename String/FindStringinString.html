@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Find string in a string</title>
+  </head>
+  <body>
+    <h1>Find string in a string</h1>
+
+    <script>
+      
+      function countOccurrences(mainStr, subStr) {
+        let count = 0;
+        let pos = 0;
+
+        while ((pos = mainStr.indexOf(subStr, pos)) !== -1) {
+          count++;
+          pos += subStr.length;
+        }
+
+        return count;
+      }
+
+      // Example usage:
+      const main = "javaisjavaisjava";
+      const sub = "java";
+      console.log(countOccurrences(main, sub)); // Output: 3
+    </script>
+  </body>
+</html>
