@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <title>Traverse a Object 2</title>
+  </head>
+
+  <body>
+    <h1>Filter only active true from nested Object 3</h1>
+
+    <script>
+      const data = [
+        {
+          id: 1,
+          name: "Electronics",
+          active: true,
+          children: [
+            {
+              id: 2,
+              name: "Laptop",
+              active: true,
+            },
+            {
+              id: 3,
+              name: "Mouse",
+              active: false,
+            },
+            {
+              id: 4,
+              name: "Monitor",
+              active: true,
+              children: [
+                {
+                  id: 5,
+                  name: "HD Monitor",
+                  active: false,
+                },
+                {
+                  id: 6,
+                  name: "4K Monitor",
+                  active: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 7,
+          name: "Furniture",
+          active: false,
+        },
+      ];
+
+      const filterObj = (arr) => {
+        const traverse = (items) => {
+          let result = [];
+          for (const item of items) {
+            if (item["active"]) {
+              let newItem = {
+                ...item,
+              };
+
+              if (Array.isArray(item.children)) {
+                newItem.children = traverse(item.children); // recursively filter children
+              }
+
+              result.push(newItem);
+            }
+          }
+          return result;
+        };
+
+        return traverse(arr);
+      };
+
+      const result = filterObj(data);
+      console.log(result);
+    </script>
+  </body>
+</html>

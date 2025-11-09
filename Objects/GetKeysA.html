@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Keys of nested objet</title>
+  </head>
+  <body>
+    <h1>Get all Keys of nested object</h1>
+
+    <script>
+      const myObj1 = {
+        firstName: "Amit",
+        lastName: "Kumar",
+        Address: {
+          city: "Delhi",
+          State: "Delhi",
+          pinCode: [110033, 110044, 110055],
+        },
+      };
+
+      const getAllKeys = (obj, prefix = "") => {
+        let keys = [];
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            const fullKey = prefix ? `${prefix}.${key}` : key;
+            keys.push(fullKey);
+
+            if (
+              typeof obj[key] === "object" &&
+              !Array.isArray(obj[key]) &&
+              obj[key] !== null
+            ) {
+              keys = keys.concat(getAllKeys(obj[key], fullKey));
+            }
+          }
+        }
+        return keys;
+      };
+
+      const result = getAllKeys(myObj1);
+
+      console.log(result);
+
+      const getAllKeysA = (obj, prefix = "") => {
+        let keys = [];
+        for (let key in obj) {
+          if (
+            typeof obj[key] === "object" &&
+            !Array.isArray(obj[key]) &&
+            obj[key] !== null
+          ) {
+            keys = keys.concat(getAllKeys(obj[key]));
+          } else {
+            keys.push(key);
+          }
+        }
+        return keys;
+      };
+
+      const resultA = getAllKeysA(myObj1);
+
+      console.log(resultA);
+    </script>
+  </body>
+</html>

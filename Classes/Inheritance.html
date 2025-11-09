@@ -2,7 +2,7 @@
   <head>
     <title>Inheritance</title>
     <script>
-      class User{
+      class User {
         constructor(name, email, password) {
           this.name = name;
           this.email = email;
@@ -14,7 +14,7 @@
         }
 
         encrypPassword() {
-          return `${this.password.split('').reverse().join('')}`;
+          return `${this.password.split("").reverse().join("")}`;
         }
 
         updateName() {
@@ -26,6 +26,7 @@
       console.log(amit.encrypPassword());
       console.log(amit.updateName());
 
+      // Inheriting User class
       class Teacher extends User {
         constructor(name, email, password, subject) {
           super(name, email, password); // Call the parent constructor
@@ -41,7 +42,12 @@
         }
       }
 
-      const govind = new Teacher("Govind", "govind@gmail.com", "govind123", "Maths");
+      const govind = new Teacher(
+        "Govind",
+        "govind@gmail.com",
+        "govind123",
+        "Maths"
+      );
       console.log(govind.encrypPassword());
       console.log(govind.updateName());
       console.log(govind.logMe());
@@ -51,12 +57,9 @@
       console.log(govind instanceof User); // true
       console.log(amit instanceof Teacher); // false
       console.log(govind instanceof Teacher); // true
-      
+
       console.log(govind instanceof Object); // true
       console.log(amit instanceof Object); // true
-      
-
-      
     </script>
   </head>
   <body>

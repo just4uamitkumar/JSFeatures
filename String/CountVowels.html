@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Count Vowel String</title>
+  </head>
+  <body>
+    <h1>Count Vowel String</h1>
+
+    <script>
+      
+      const myStr = 'javascript';
+
+      const getVowels = (str) => {
+        let count = 0;
+        const vowels = ['a', 'e', 'i', 'o', 'u']
+        
+        for(let i = 0; i < str.length; i++){
+          if(vowels.includes(str[i])){
+            count++
+          }
+        }
+        
+        return count
+        
+      }
+
+
+      console.log(getVowels(myStr))
+    </script>
+  </body>
+</html>

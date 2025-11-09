@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Compare Objects</title>
+   
+  </head>
+  <body>
+    <h1>Compare Objects</h1>
+
+     <script>
+      function deepEqual(obj1, obj2) {
+        // Check for strict equality first
+        if (obj1 === obj2) return true;
+
+        // Check for null or non-object types
+        if (obj1 === null || obj2 === null || typeof obj1 !== 'object' || typeof obj2 !== 'object') {
+          return false;
+        }
+
+        // Compare keys length
+        const keys1 = Object.keys(obj1);
+        const keys2 = Object.keys(obj2);
+        if (keys1.length !== keys2.length) return false;
+
+        // Recursively compare each key
+        for (let key of keys1) {
+          if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      const a = {
+        name: "Alice",
+        age: 30,
+        address: { city: "Delhi", zip: 110001 }
+      };
+
+      const b = {
+        name: "Alice",
+        age: 30,
+        address: { city: "Delhi", zip: 110001 }
+      };
+
+      console.log(deepEqual(a, b)); // Output: true
+    </script>
+  </body>
+</html>
+

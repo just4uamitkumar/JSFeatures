@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Create Array Series </title>
+  </head>
+  <body>
+    <h1>Create a array by a series</h1>
+
+    <script>
+      const createArr = (start, end, increment) => {
+        let newArr = [];
+        for(let i = start; i <= end; i += increment ){
+          newArr.push(i)
+        }
+        return newArr
+      }
+
+      console.log(createArr(1, 5, 1)) //[1, 2, 3, 4, 5]
+      console.log(createArr(1, 10, 2)) //[1, 3, 5, 7, 9]
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Traverse a Object 6</title>
+  </head>
+
+  <body>
+    <h1>Extract the list of the employee with their department name</h1>
+
+    <script>
+      const company = {
+        name: "Head Office",
+        employees: [
+          { name: "Alice", role: "Manager" },
+          { name: "Bob", role: "Developer" },
+        ],
+        subDepartments: [
+          {
+            name: "Engineering",
+            employees: [
+              { name: "Charlie", role: "Developer" },
+              { name: "David", role: "Developer" },
+            ],
+            subDepartments: [
+              {
+                name: "QA",
+                employees: [
+                  { name: "Eva", role: "Tester" },
+                  { name: "Frank", role: "Developer" },
+                ],
+              },
+            ],
+          },
+          {
+            name: "Design",
+            employees: [{ name: "Grace", role: "Designer" }],
+          },
+        ],
+      };
+
+      const getValue = (obj, result = {}) => {
+        if (obj.employees) {
+          obj.employees.forEach((emp) => {
+            if (!result[emp.role]) {
+              result[emp.role] = [];
+            }
+            result[emp.role].push(emp.name);
+          });
+        }
+
+        // Traverse subDepartments if any
+        if (obj.subDepartments) {
+          obj.subDepartments.forEach((subDept) => {
+            getValue(subDept, result);
+          });
+        }
+
+        return result;
+      };
+
+      console.log(getValue(company));
+    </script>
+  </body>
+</html>

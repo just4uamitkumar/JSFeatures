@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>Traverse a Object 4</title>
+    
+</head>
+
+<body>
+    <h1>Extract the list of the employee with their department name</h1>
+
+    <script>
+        const company = {
+          name: "Head Office",
+          employees: [
+            { name: "Amit", salary: 5000 },
+            { name: "Ravi", salary: 6000 }
+          ],
+          departments: [
+            {
+              name: "IT",
+              employees: [
+                { name: "Neha", salary: 8000 },
+                { name: "Arjun", salary: 7500 }
+              ],
+              departments: [
+                {
+                  name: "Security",
+                  employees: [{ name: "Suresh", salary: 4000 }],
+                  departments: []
+                }
+              ]
+            },
+            {
+              name: "HR",
+              employees: [{ name: "Priya", salary: 6500 }],
+              departments: []
+            }
+          ]
+        };
+
+
+        const covertObj = (obj, path='') => {
+          const currentPath = path ? `${path} > ${obj.name}` : obj.name;
+          
+          let result = [];
+          
+          if (obj.employees) {
+            const withPath = obj.employees.map(item => ({
+              ...item,
+              departmentPath: currentPath
+            }));
+            result.push(...withPath);
+          }
+          
+          if (obj.departments) {
+            for (const subDept of obj.departments) {
+              result.push(...covertObj(subDept, currentPath));
+            }
+          }
+          
+          
+          return result
+        }
+
+        console.log('Solution 1 ', covertObj(company))
+
+
+        const convertObjA = (obj = {}, path = '') => {
+          const currentPath = path ? `${path} > ${obj.name}` : obj.name;
+          let result = [];
+
+          if (Array.isArray(obj.employees)) {
+            result.push(
+              ...obj.employees.map(emp => ({
+                ...emp,
+                departmentPath: currentPath
+              }))
+            );
+          }
+
+          if (Array.isArray(obj.departments)) {
+            for (const dept of obj.departments) {
+              result.push(...convertObj(dept, currentPath));
+            }
+          }
+
+          return result;
+        };
+
+        console.log('Solution 2 ', convertObjA(company))
+    </script>
+</body>
+
+</html>

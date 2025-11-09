@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Sum of nested objet</title>
+  </head>
+  <body>
+    <h1>Get Sum of nested objet</h1>
+
+    <script>
+      const myObj = {
+        a: 5,
+        b: [5, 6, 7, 8, 9],
+        c: { d: 5, e: 7 },
+      };
+
+      const getSum = (obj) => {
+        let sum = 0;
+        for (let key in obj) {
+          const value = obj[key];
+
+          if (typeof value === "number") {
+            sum += value;
+          } else if (Array.isArray(value)) {
+            sum += value.reduce((acc, cumm) => acc + cumm, 0);
+          } else if (typeof value === "object" && value !== null) {
+            sum += getSum(value);
+          }
+        }
+
+        return sum;
+      };
+
+      const result = getSum(myObj);
+
+      console.log(result);
+    </script>
+  </body>
+</html>

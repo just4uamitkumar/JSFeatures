@@ -27,14 +27,16 @@
           if (arr[i] > largest) {
             secondLargest = largest;
             largest = arr[i];
-          } else if (arr[i] > secondLargest && arr[i] !== largest) {
+          } 
+          // Check exceptional case
+          else if (arr[i] > secondLargest && arr[i] !== largest) {
             secondLargest = arr[i];
           }
         }
 
         return secondLargest === -Infinity ? null : secondLargest;
       };
-      
+
       console.log(getSecondLargest(myArr));
     </script>
   </body>

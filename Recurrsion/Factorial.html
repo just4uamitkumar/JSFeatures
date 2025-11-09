@@ -20,6 +20,16 @@
         const number = 5;
         const result = factorial(number);
        console.log(`The factorial of ${number} is ${result}`);
+
+       let num = 5;
+        let fact = 1;
+
+        while (num > 0) {
+          fact *= num;
+          num--;
+        }
+
+        console.log(fact); // 👉 120
     </script>
   </body>
 </html>

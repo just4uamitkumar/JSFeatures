@@ -4,13 +4,14 @@
   </head>
   <body>
     <h1>Compare Array</h1>
+    <p>Compare two array both are equal or not</p>
 
     <script>
-      //reduce duplicate by one
+      //compare two array both are equal or not
       const myArr1 = [1, 9, 3, 11, 7, 6];
       const myArr2 = [1, 9, 3, 11, 6, 7];
 
-      const compareArr = (arr1, arr2) => {
+      const compareArrA = (arr1, arr2) => {
         if (arr1.length !== arr2.length) {
           console.log("Arrays are not equal");
           return false;
@@ -25,7 +26,23 @@
         return true;
       };
 
-      compareArr(myArr1, myArr2);
+      const resultA = compareArrA(myArr1, myArr2);
+      console.log(resultA);
+
+      const compareArrB = (arr1, arr2) => {
+        if (arr1.length === arr2.length) {
+          for (let i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) {
+              console.log("Arrays are not equal");
+            } else {
+              console.log("Arrays are equal");
+            }
+          }
+        }
+      };
+
+      const resultB = compareArrB(myArr1, myArr2);
+      console.log(resultB);
     </script>
   </body>
 </html>

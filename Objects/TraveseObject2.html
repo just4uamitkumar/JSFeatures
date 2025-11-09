@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>Traverse a Object 2</title>
+  </head>
+  <body>
+    <h1>Flatten a Object</h1>
+    <p>Flaaten a nestd object</p>
+
+    <script>
+      const list = [
+        {
+          id: 1,
+          name: "README.md",
+        },
+        {
+          id: 2,
+          name: "Documents",
+          children: [
+            {
+              id: 3,
+              name: "Word.doc",
+            },
+            {
+              id: 4,
+              name: "Powerpoint.ppt",
+            },
+          ],
+        },
+        {
+          id: 5,
+          name: "Downloads",
+          children: [
+            {
+              id: 6,
+              name: "unnamed.txt",
+            },
+            {
+              id: 7,
+              name: "Misc",
+              children: [
+                {
+                  id: 8,
+                  name: "foo.txt",
+                },
+                {
+                  id: 9,
+                  name: "bar.txt",
+                },
+              ],
+            },
+          ],
+        },
+      ];
+
+      const flattenTree = (nodes) => {
+        const result = [];
+
+        const traverse = (items) => {
+          for (const item of items) {
+            const { id, name } = item;
+            result.push({ id, name });
+
+            if (item.children) {
+              traverse(item.children);
+            }
+          }
+        };
+
+        traverse(nodes);
+        return result;
+      };
+
+      const result = flattenTree(list);
+      console.log(result);
+    </script>
+  </body>
+</html>

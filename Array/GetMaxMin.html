@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>Get Max and Min</title>
+  </head>
+  <body>
+    <h1>Get Max and Min from Array</h1>
+
+    <script>
+      const myArr = [12, 4, 6, 8, 20, 5, 7, 9];
+
+      const maxA = myArr.sort((a, b) => a - b)[myArr.length - 1];
+      const minA = myArr.sort((a, b) => a - b)[0];
+
+      const maxB = Math.max(...myArr);
+      const minB = Math.min(...myArr);
+
+      console.log({ maxA: maxA, maxB: maxB, minA: minA, minB: minB });
+
+      const getMaxMin = (arr) => {
+        let max = -Infinity;
+        let min = arr[0];
+
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > max) {
+            max = arr[i];
+          }
+
+          if (arr[i] < min) {
+            min = arr[i];
+          }
+        }
+
+        return {
+          max,
+          min,
+        };
+      };
+
+      const result = getMaxMin(myArr);
+      console.log(result);
+    </script>
+  </body>
+</html>

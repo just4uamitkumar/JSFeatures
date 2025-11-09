@@ -6,7 +6,6 @@
     <h1>Union and Intersection of Arrays</h1>
 
     <script>
-      
       const myArr1 = [4, 6, 8, 9, 12];
       const myArr2 = [3, 6, 8, 11, 15];
 
@@ -19,13 +18,12 @@
             myArr.push(arr1[i]);
           }
         }
-        console.log(myArr)
 
         myArr = [...myArr, ...arr2];
         return myArr;
       };
 
-      console.log('unionArray of arrays', unionArray(myArr1, myArr2));
+      console.log("unionArray of arrays", unionArray(myArr1, myArr2));
 
       //Intersection of two arrays
       const interArray = (arr1, arr2) => {
@@ -38,7 +36,7 @@
         return myArr;
       };
 
-      console.log('interArray of arrays', interArray(myArr1, myArr2));
+      console.log("interArray of arrays", interArray(myArr1, myArr2));
     </script>
   </body>
 </html>
