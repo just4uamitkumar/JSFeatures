@@ -3,32 +3,50 @@
     <title>Reduce Duplicate</title>
   </head>
   <body>
-    <h1>Reduce Duplicate</h1>
+    <h1>Reduce Duplicate by 1</h1>
 
     <script>
-        //reduce duplicate by one 
+      //reduce duplicate by one
       const myArr = [5, 7, 3, 2, 10, 22, 9, 3, 7, 10];
 
       const reduceDuplicates = (arr) => {
         let newArr = [];
         let newVal = 0;
 
-        for(let i = 0; i < arr.length; i++) {
-          if(newArr.includes(arr[i])) {
+        for (let i = 0; i < arr.length; i++) {
+          if (newArr.includes(arr[i])) {
             newVal = arr[i] - 1;
             newArr.push(newVal);
-          }
-          else{
+          } else {
             newArr.push(arr[i]);
           }
         }
 
-        console.log(newArr);
         return newArr;
       };
 
-    reduceDuplicates(myArr);
+      console.log(reduceDuplicates(myArr));
+
+      const countMap = {};
+      const usedValues = new Set();
+
+      const result = myArr.map((num) => {
+        if (!countMap[num]) countMap[num] = 0;
+
+        let adjusted = num - countMap[num];
+
+        // Keep decrementing until we find a unique value
+        while (usedValues.has(adjusted)) {
+          countMap[num]++;
+          adjusted = num - countMap[num];
+        }
+
+        usedValues.add(adjusted);
+        countMap[num]++;
+        return adjusted;
+      });
+
+      console.log(result);
     </script>
   </body>
 </html>
-

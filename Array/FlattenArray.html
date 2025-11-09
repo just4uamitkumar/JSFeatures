@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Flaten Array</title>
+  </head>
+  <body>
+    <h1>Flatten Array</h1>
+    <p>[1, [9, 10, [5, 8]] [3, 11], 7, 6]</p>
+
+    <script>
+      //compare two array both are equal or not
+      const myArr = [1, [9, 10, [5, 8]], [3, 11], 7, 6];
+
+      const flattenArr = (arr) => {
+        const result = [];
+
+        const helper = (subArr) => {
+          for (let i = 0; i < subArr.length; i++) {
+            if (Array.isArray(subArr[i])) {
+              helper(subArr[i]);
+            } else {
+              result.push(subArr[i]);
+            }
+          }
+        };
+
+        helper(arr);
+        return result;
+      };
+
+      const finalArr = flattenArr(myArr);
+      console.log(finalArr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Alternate Array</title>
+  </head>
+  <body>
+    <h1>Alternate Array</h1>
+    <p>Get every third item from the array</p>
+
+    <script>
+      const myArr = [2, 4, 6, 8, 10, 12, 14, 16]; // [2,6,10,14]
+
+      const getAlternateValues = (arr) => {
+        const newArr = [];
+        for (let i = 0; i < arr.length; i += 2) {
+          newArr.push(arr[i]);
+        }
+        return newArr;
+      };
+
+      const result = getAlternateValues(myArr);
+      console.log(result);
+    </script>
+  </body>
+</html>

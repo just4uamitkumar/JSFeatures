@@ -20,8 +20,8 @@
         return newArr;
       };
 
-      console.log('Remove Duplicate Elements', removeDuplicates(myArr));
- 
+      console.log("Remove Duplicate Elements", removeDuplicates(myArr));
+
       //reduce duplicate by one
       const myArr1 = [
         { name: "Amit", age: 38, location: "Delhi" },
@@ -34,16 +34,16 @@
       ];
 
       //Remove duplicate object
-      const removeDuplicateObjA = (obj) => {
+      const removeDuplicateObjA = (arr) => {
         const myArr = [];
         const uniqueObject = {};
 
-        for (const i in obj) {
+        for (const i in arr) {
           // Extract the title
-          const objTitle = obj[i]["name"];
+          const objTitle = arr[i]["name"];
 
           // Use the title as the index
-          uniqueObject[objTitle] = obj[i];
+          uniqueObject[objTitle] = arr[i];
         }
 
         // Loop to push unique object into array
@@ -56,14 +56,15 @@
       // Remove duplicates object based on all object properties
       const removeDuplicateObjB = (obj) => {
         const uniqueByName = obj.filter(
-          (obj, index, self) => index === self.findIndex((o) => o.name === obj.name)
+          (obj, index, self) =>
+            index === self.findIndex((o) => o.name === obj.name)
         );
-        
+
         return uniqueByName;
       };
 
-      console.log('Remove Duplicate Object A', removeDuplicateObjA(myArr1));
-      console.log('Remove Duplicate Object B', removeDuplicateObjB(myArr1));
+      console.log("Remove Duplicate Object A", removeDuplicateObjA(myArr1));
+      console.log("Remove Duplicate Object B", removeDuplicateObjB(myArr1));
     </script>
   </body>
 </html>

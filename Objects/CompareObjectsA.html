@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Compare Objects A</title>
+  </head>
+  <body>
+    <h1>Compare Objects A</h1>
+
+    <script>
+      const myObj1 = {
+        firstName: "Amit",
+        lastName: "Kumar",
+        Address: {
+          city: "Delhi",
+          State: "Delhi",
+          pinCode: [110033, 110044, 110055],
+        },
+      };
+
+      const myObj2 = {
+        firstName: "Amit",
+        lastName: "Kumar",
+        Address: {
+          city: "Delhi",
+          State: "Delhi",
+          pinCode: [110033, 110044, 110056],
+        },
+      };
+
+
+      const deepEqual = (obj1, obj2) => {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
+      };
+
+      console.log(deepEqual(myObj1, myObj2)); // Output: false
+
+      const findDifferences = (obj1, obj2) => {
+        const diffs = [];
+        for (let key in obj1) {
+            if (typeof obj1[key] === 'object' && obj1[key] !== null) {
+            diffs.push(...findDifferences(obj1[key], obj2[key]));
+            } else if (JSON.stringify(obj1[key]) !== JSON.stringify(obj2[key])) {
+            diffs.push({ key, value1: obj1[key], value2: obj2[key] });
+            }
+        }
+        return diffs;
+        }
+
+        console.log(findDifferences(myObj1, myObj2));
+    </script>
+  </body>
+</html>

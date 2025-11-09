@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Traverse a Object 5</title>
+  </head>
+
+  <body>
+    <h1>Create a new object with subdepartment</h1>
+
+    <script>
+      const company = {
+        name: "Head Office",
+        employees: [{ name: "Amit" }, { name: "Sara" }],
+        subDepartments: [
+          {
+            name: "IT",
+            employees: [{ name: "Ravi" }],
+            subDepartments: [
+              {
+                name: "Development",
+                employees: [{ name: "Nina" }, { name: "Raj" }],
+              },
+              {
+                name: "QA",
+                employees: [{ name: "Vikram" }],
+              },
+            ],
+          },
+          {
+            name: "HR",
+            employees: [{ name: "Meena" }],
+          },
+        ],
+      };
+
+      const flattenDept = (obj, path = "", result = {}) => {
+        const currentPath = path ? `${path} > ${obj.name}` : obj.name;
+        result[currentPath] = obj.employees
+          ? obj.employees.map((emp) => emp.name)
+          : [];
+
+        if (obj.subDepartments) {
+          obj.subDepartments.forEach((subDept) => {
+            flattenDept(subDept, currentPath, result);
+          });
+        }
+
+        return result;
+      };
+
+      console.log("Solution 1 ", flattenDept(company));
+    </script>
+  </body>
+</html>

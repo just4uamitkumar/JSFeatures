@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Total of specific key</title>
+  </head>
+  <body>
+    <h1>Get Total of specific key</h1>
+    <h1>Get Total of the salary in nested array object</h1>
+
+    <script>
+      const company = {
+        name: "Head Office",
+        employees: [
+          { name: "Amit", salary: 5000 },
+          { name: "Ravi", salary: 6000 },
+        ],
+        departments: [
+          {
+            name: "IT",
+            employees: [
+              { name: "Neha", salary: 8000 },
+              { name: "Arjun", salary: 7500 },
+            ],
+            departments: [
+              {
+                name: "Security",
+                employees: [{ name: "Suresh", salary: 4000 }],
+                departments: [],
+              },
+            ],
+          },
+          {
+            name: "HR",
+            employees: [{ name: "Priya", salary: 6500 }],
+            departments: [],
+          },
+        ],
+      };
+
+      const getSalary = (obj) => {
+        let total = 0;
+
+        if (obj.employees) {
+          total += obj.employees.reduce((sum, emp) => sum + emp.salary, 0);
+        }
+
+        if (obj.departments) {
+          for (const subDept of obj.departments) {
+            total += getSalary(subDept);
+          }
+        }
+
+        return total;
+      };
+
+      console.log("Solution  1", getSalary(company));
+
+      const getSalaryA = (obj = {}) => {
+        let total = 0;
+
+        if (Array.isArray(obj.employees)) {
+          total += obj.employees.reduce(
+            (sum, emp) => sum + (emp.salary || 0),
+            0
+          );
+        }
+
+        if (Array.isArray(obj.departments)) {
+          total += obj.departments.reduce(
+            (sum, dept) => sum + getSalary(dept),
+            0
+          );
+        }
+
+        return total;
+      };
+
+      console.log("Solution  2", getSalaryA(company));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Clone Deep</title>
+  </head>
+  <body>
+    <h1>Clone Deep</h1>
+
+    <script>
+      function deepClone(obj) {
+        // Handle null or non-object types (primitives)
+        if (obj === null || typeof obj !== "object") {
+          return obj;
+        }
+
+        // Handle Date
+        if (obj instanceof Date) {
+          return new Date(obj.getTime());
+        }
+
+        // Handle Array
+        if (Array.isArray(obj)) {
+          return obj.map((item) => deepClone(item));
+        }
+
+        // Handle Object
+        const clonedObj = {};
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            clonedObj[key] = deepClone(obj[key]);
+          }
+        }
+
+        return clonedObj;
+      }
+
+      const original = {
+        name: "Alice",
+        age: 30,
+        hobbies: ["reading", "cycling"],
+        address: {
+          city: "Delhi",
+          zip: 110001,
+        },
+      };
+
+      const copy = deepClone(original);
+      copy.address.city = "Mumbai";
+
+      console.log(original.address.city); // "Delhi" — original remains unchanged
+      console.log(copy.address.city); // "Mumbai"
+    </script>
+  </body>
+</html>

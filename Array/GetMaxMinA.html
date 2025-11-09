@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>Get Max and Min</title>
+  </head>
+  <body>
+    <h1>Get Max and Min from Array</h1>
+
+    <script>
+      const users = [
+        { id: 1, name: "Amit", age: 39, salary: 50000, city: "Delhi" },
+        { id: 2, name: "Ajay", age: 41, salary: 20000, city: "Delhi" },
+        { id: 3, name: "Sunil", age: 41, salary: 35000, city: "Delhi" },
+        { id: 4, name: "Sachin", age: 25, salary: 25000, city: "Agra" },
+        { id: 5, name: "Jairam", age: 42, salary: 60000, city: "Delhi" },
+        { id: 6, name: "Vivek", age: 29, salary: 3000, city: "Agra" },
+        { id: 7, name: "Joginder", age: 29, salary: 15000, city: "Agra" },
+        { id: 8, name: "Kanchan", age: 20, salary: 0, city: "Agra" },
+        { id: 9, name: "Reena", age: 25, salary: 0, city: "Agra" },
+      ];
+
+      // Method 1
+      const maxAgeA = users.sort((a, b) => a.age - b.age)[users.length - 1];
+      const minAgeA = users.sort((a, b) => a.age - b.age)[0];
+
+      console.log({ maxAgeA: maxAgeA, minAge: minAgeA });
+
+      //Method 2
+      const maxAgeB = Math.max(...users.map((user) => user.age));
+      const oldestUsers = users.filter((user) => user.age === maxAgeB);
+
+      const minAgeB = Math.min(...users.map((user) => user.age));
+      const youngestUsers = users.filter((user) => user.age === minAgeB);
+
+      console.log({ oldestUsers: oldestUsers, youngestUsers: youngestUsers });
+
+      //Method 3
+      const getMaxMin = (arr) => {
+        let maxAge = -Infinity;
+        let minAge = arr[0].age;
+        let maxAgeObj = {};
+        let minAgeObj = arr[0];
+
+        for (let i = 0; i < arr.length; i++) {
+          const { age } = arr[i];
+
+          if (age > maxAge) {
+            maxAge = age;
+            maxAgeObj = arr[i];
+          }
+
+          if (age < minAge) {
+            minAge = age;
+            minAgeObj = arr[i];
+          }
+        }
+
+        return {
+          maxAge,
+          minAge,
+          maxAgeObj,
+          minAgeObj,
+        };
+      };
+
+      const result = getMaxMin(users);
+      console.log(result);
+    </script>
+  </body>
+</html>

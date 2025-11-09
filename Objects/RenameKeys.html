@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rename keys of nested objet</title>
+  </head>
+  <body>
+    <h1>Rename keys of nested object</h1>
+
+    <script>
+      const data = {
+        id: 1,
+        name: "Laptop",
+        price: 50000,
+        specs: {
+          ram: "16GB",
+          storage: "512GB SSD",
+          details: {
+            manufacturer: "Dell",
+            warranty: "2 years",
+          },
+        },
+      };
+
+      const keyMap = {
+        name: "productName",
+        price: "cost",
+        ram: "memory",
+        storage: "disk",
+        manufacturer: "brand",
+      };
+
+      function renameKeys(obj, keyMap) {
+        if (Array.isArray(obj)) {
+          return obj.map((item) => renameKeys(item, keyMap));
+        } else if (obj !== null && typeof obj === "object") {
+          return Object.entries(obj).reduce((acc, [key, value]) => {
+            const newKey = keyMap[key] || key;
+            acc[newKey] = renameKeys(value, keyMap);
+
+            return acc;
+          }, {});
+        }
+
+        return obj;
+      }
+
+      const result = renameKeys(data, keyMap);
+
+      console.log(result);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Get Key of nested objet</title>
+  </head>
+  <body>
+    <h1>Get all Keys of nested object</h1>
+
+    <script>
+      const data = {
+        id: 1,
+        name: 'Laptop',
+        price: 50000,
+        specs: {
+          ram: '16GB',
+          storage: '512GB SSD',
+          details: {
+            manufacturer: 'Dell',
+            warranty: '2 years'
+          }
+        }
+      };
+
+      const getAllKeys = (obj) => {
+        let result = []
+        
+        for( const key in obj){
+          if(typeof obj[key] === 'object' && obj[key] !== null){
+            result = result.concat(getAllKeys(obj[key]));
+          }
+          else{
+            result.push(key)
+          }
+        }
+        return result
+      }
+
+      const result = getAllKeys(data)
+
+      console.log(result)
+
+
+    </script>
+  </body>
+</html>
+
+

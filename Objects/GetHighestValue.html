@@ -1,6 +1,9 @@
 <html>
   <head>
     <title>Get Highest valuet</title>
+  </head>
+  <body>
+    <h1>Get Highest Value in Nested Object</h1>
     <script>
       const myObj = {
         x: 5,
@@ -39,9 +42,31 @@
       const resultB = getMaxValueB(myObj);
 
       console.log(resultB); // 20
+
+      const getMaxValueKey = (obj) => {
+        let maxValue = -Infinity;
+        let maxKey = null;
+
+        const traverseObj = (item) => {
+          for (let key in item) {
+            if (typeof item[key] === "object" && item[key] !== null) {
+              traverseObj(item[key]);
+            } else {
+              if (item[key] > maxValue) {
+                maxValue = item[key];
+                maxKey = key;
+              }
+            }
+          }
+        };
+
+        traverseObj(obj);
+        return { maxValue: maxValue, maxKey: maxKey };
+      };
+
+      const resultC = getMaxValueKey(myObj);
+
+      console.log(resultC); // 20 , q
     </script>
-  </head>
-  <body>
-    <h1>Get Highest Value in Nested Object</h1>
   </body>
 </html>
