@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Traverse a Object 7</title>
+  </head>
+
+  <body>
+    <h1>Combines Array or convert object to array</h1>
+
+    <script>
+      const obj = {
+        "Q1":"Amit",
+        "Q2":"Ajay",
+        "Q3":"Sonam",
+        "Q4":"Sunil",
+        "Q5":"Tarun",
+      }
+
+      const arr1 = Object.keys(obj)
+      const arr2 = Object.values(obj)
+      const arr3 = Object.entries(obj)
+
+
+      const combined = arr1.map((item, index) => ({
+        name: item,
+        value: arr2[index]
+      }));
+
+      const combined2 = Object.entries(obj).map(([name, value]) => ({
+        name, value
+      }))
+
+      console.log(arr1)
+      console.log(arr2)
+      console.log(arr3)
+      console.log(combined)
+      console.log(combined2)
+
+     
+    </script>
+  </body>
+</html>
