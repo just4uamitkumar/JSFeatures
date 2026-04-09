@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Render List 2</title>
+    <style>
+      #loadMoreBtn {
+        margin-top: 15px;
+      }
+
+      #nameInput {
+        margin-bottom: 15px;
+      }
+      .table {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .table table thead tr th,
+      .table table tbody tr td {
+        padding: 5px 20px 5px 5px;
+        text-align: left;
+      }
+
+      .table tr {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Data List</h1>
+    <h2></h2>
+    <input type="text" placeholder="Search By Name" id="nameInput" />
+    <select id="selectGender">
+      <option>---Please Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <div id="listContainer" class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>BirthDate</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>City</th>
+            <th>Country</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button id="loadMoreBtn" onclick="loadMore()">Load More</button>
+
+    <script>
+      const listContainer = document.getElementById("listContainer");
+      const loadMoreBtn = document.getElementById("loadMoreBtn");
+      const tagLine = document.getElementsByTagName("h2")[0];
+      const tbody = document.getElementsByTagName("tbody")[0];
+      const nameInput = document.getElementById("nameInput");
+      const selectGender = document.getElementById("selectGender");
+
+      const getList = async () => {
+        try {
+          const response = await fetch("https://dummyjson.com/users");
+          return await response.json();
+        } catch (err) {
+          console.log(err);
+          listContainer.style.display = "none";
+          loadMoreBtn.style.display = "none";
+        }
+      };
+
+      let visibleCount = 10;
+      let userList = [];
+      let originalList = [];
+
+      const renderList = () => {
+        tbody.innerHTML = "";
+
+        if (userList.length === 0 || !userList) {
+          return;
+        }
+
+        const dataToShow = userList.slice(0, visibleCount);
+
+        tagLine.innerHTML = `Showing ${dataToShow.length} record out of ${userList.length}`;
+
+        dataToShow.forEach((element) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+          <td>${element.id || "-"}</td>
+          <td>${element.firstName || "-"}  ${element.lastName || "-"}</td>
+          <td>${element.age || "-"}</td>
+          <td>${element.birthDate || "-"}</td>
+          <td>${element.gender || "-"}</td>
+          <td>${element.email || "-"}</td>
+          <td>${element.phone || "-"}</td>
+          <td>${element.weight || "-"}</td>
+          <td>${element.height || "-"}</td>
+          <td>${element.address.city || "-"}</td>
+          <td>${element.address.country || "-"}</td>
+    `;
+          tbody.appendChild(row);
+        });
+
+        if (visibleCount >= userList.length || userList.length === 0) {
+          loadMoreBtn.style.display = "none";
+        } else {
+          loadMoreBtn.style.display = "block";
+        }
+
+        if (userList.length === 0 || !userList) {
+          listContainer.style.display = "none";
+        } else {
+          listContainer.style.display = "block";
+        }
+      };
+
+      getList().then((data) => {
+        userList = data.users;
+        originalList = data.users;
+        renderList();
+      });
+
+      const loadMore = () => {
+        visibleCount += 5;
+        if (visibleCount > userList.length) {
+          visibleCount = userList.length;
+        }
+        renderList();
+      };
+
+      const getName = (e) => {
+        const value = e.target.value.toLowerCase();
+        userList = originalList.filter((user) =>
+          `${user.firstName} ${user.lastName}`.toLowerCase().includes(value),
+        );
+
+        visibleCount = 10; // reset pagination
+        renderList();
+      };
+
+      nameInput.addEventListener("input", getName);
+
+      const getGender = (e) => {
+        let val = e.target.value
+        userList = originalList.filter((user) =>
+          user.gender === val
+        );
+
+        visibleCount = 10; // reset pagination
+        renderList();
+
+      }
+
+      
+
+      selectGender.addEventListener("change", getGender);
+    </script>
+  </body>
+</html>
